@@ -76,4 +76,19 @@ class RtController extends Controller
         Rt::find($id)->delete();
         return response()->json(['status'=>'succcess','message' => 'Data RT berhasil dihapus.']);
     }
+
+    public function get()
+    {
+       if(request()->ajax()){
+        $rw_id = request('rw_id');
+        $items = Rt::where('rw_id',$rw_id)->orderBy('nomor','ASC')->get();
+        if($items)
+        {
+            return response()->json($items);
+        }else{
+            return response()->json([]);
+        }
+
+       }
+    }
 }

@@ -6,16 +6,14 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PekerjaanController;
 use App\Http\Controllers\Admin\PendidikanController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\PostCategoryController;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\PostTagController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RtController;
 use App\Http\Controllers\Admin\RwController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\SocmedController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BantuanSosialController;
+use App\Http\Controllers\Admin\WargaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[DashboardController::class,'index'])->name('dashboard');
@@ -51,19 +49,32 @@ Route::resource('rw',RwController::class)->except('create','show','edit','update
 
 // RT
 Route::get('rt/data',[RtController::class,'data'])->name('rt.data');
+Route::post('rt/get',[RtController::class,'get'])->name('rt.get');
 Route::resource('rt',RtController::class)->except('create','show','edit','update');
 
 // Agama
 Route::get('agama/data',[AgamaController::class,'data'])->name('agama.data');
+Route::post('agama/get',[AgamaController::class,'get'])->name('agama.get');
 Route::resource('agama',AgamaController::class)->except('create','show','edit','update');
 
 // Pendidikan
 Route::get('pendidikan/data',[PendidikanController::class,'data'])->name('pendidikan.data');
+Route::post('pendidikan/get',[PendidikanController::class,'get'])->name('pendidikan.get');
 Route::resource('pendidikan',PendidikanController::class)->except('create','show','edit','update');
 
 // pekerjaan
 Route::get('pekerjaan/data',[PekerjaanController::class,'data'])->name('pekerjaan.data');
+Route::post('pekerjaan/get',[PekerjaanController::class,'get'])->name('pekerjaan.get');
 Route::resource('pekerjaan',PekerjaanController::class)->except('create','show','edit','update');
+
+// bantuan sosial
+Route::get('bantuan-sosial/data',[BantuanSosialController::class,'data'])->name('bantuan-sosial.data');
+Route::resource('bantuan-sosial',BantuanSosialController::class)->except('create','show','edit','update');
+
+// warga
+Route::get('warga/data',[WargaController::class,'data'])->name('warga.data');
+Route::post('warga/detail',[WargaController::class,'show'])->name('warga.getById');
+Route::resource('warga',WargaController::class)->except('create','show','edit','update');
 
 
 // setting

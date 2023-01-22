@@ -9,6 +9,7 @@ use App\Models\PostTag;
 use App\Models\Rt;
 use App\Models\Rw;
 use App\Models\User;
+use App\Models\Warga;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,6 +19,7 @@ class DashboardController extends Controller
         $count = [
             'rw' => Rw::count(),
             'rt' => Rt::count(),
+            'warga' => Warga::count(),
             'user' => User::count()
         ];
        return view('admin.pages.dashboard',[

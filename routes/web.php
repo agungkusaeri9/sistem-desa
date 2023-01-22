@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::redirect('/', '/login', 301);

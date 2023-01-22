@@ -71,4 +71,10 @@ class PekerjaanController extends Controller
         Pekerjaan::find($id)->delete();
         return response()->json(['status'=>'succcess','message' => 'Data Pekerjaan berhasil dihapus.']);
     }
+
+    public function get()
+    {
+        $items = Pekerjaan::orderBy('nama','ASC')->get();
+        return response()->json($items);
+    }
 }

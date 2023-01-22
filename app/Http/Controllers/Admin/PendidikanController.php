@@ -71,4 +71,9 @@ class PendidikanController extends Controller
         Pendidikan::find($id)->delete();
         return response()->json(['status'=>'succcess','message' => 'Data Pendidikan berhasil dihapus.']);
     }
+    public function get()
+    {
+        $items = Pendidikan::orderBy('nama','ASC')->get();
+        return response()->json($items);
+    }
 }

@@ -60,7 +60,7 @@
               <h4>Warga</h4>
             </div>
             <div class="card-body">
-             0
+             {{ $count['warga'] }}
             </div>
           </div>
         </div>

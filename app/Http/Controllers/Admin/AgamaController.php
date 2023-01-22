@@ -71,4 +71,10 @@ class AgamaController extends Controller
         Agama::find($id)->delete();
         return response()->json(['status'=>'succcess','message' => 'Data Agama berhasil dihapus.']);
     }
+
+    public function get()
+    {
+        $items = Agama::orderBy('nama','ASC')->get();
+        return response()->json($items);
+    }
 }

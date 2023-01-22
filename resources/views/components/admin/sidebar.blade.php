@@ -13,61 +13,82 @@
                 </li>
             @endcan
 
-            <li class="menu-header">MASTER</li>
-            @can('Rw View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.rw.index') }}"><i class="fas fa-folder"></i>
-                        <span>RW</span></a>
-                </li>
-            @endcan
-            @can('Rt View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.rt.index') }}"><i class="fas fa-folder"></i>
-                        <span>RT</span></a>
-                </li>
-            @endcan
-            @can('Agama View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.agama.index') }}"><i class="fas fa-folder"></i>
-                        <span>Agama</span></a>
-                </li>
-            @endcan
-            @can('Pendidikan View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.pendidikan.index') }}"><i class="fas fa-folder"></i>
-                        <span>Pendidikan</span></a>
-                </li>
-            @endcan
-            @can('Pekerjaan View')
+            <li class="menu-header">BANTUAN SOSIAL</li>
             <li>
-                <a class="nav-link" href="{{ route('admin.pekerjaan.index') }}"><i class="fas fa-folder"></i>
-                    <span>Pekerjaan</span></a>
+                <a class="nav-link" href="{{ route('admin.bantuan-sosial.index') }}">
+                    <i class="fas fa-folder"></i>
+                    <span>Bantuan Sosial</span></a>
             </li>
-        @endcan
+            <li class="menu-header">MASTER</li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Master Data</span></a>
+                <ul class="dropdown-menu">
+                    @can('Rw View')
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.rw.index') }}">
+                                <span>RW</span></a>
+                        </li>
+                    @endcan
+                    @can('Rt View')
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.rt.index') }}">
+                                <span>RT</span></a>
+                        </li>
+                    @endcan
+                    @can('Agama View')
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.agama.index') }}">
+                                <span>Agama</span></a>
+                        </li>
+                    @endcan
+                    @can('Pendidikan View')
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.pendidikan.index') }}">
+                                <span>Pendidikan</span></a>
+                        </li>
+                    @endcan
+                    @can('Pekerjaan View')
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.pekerjaan.index') }}">
+                                <span>Pekerjaan</span></a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+            @can('Warga View')
+            <li>
+                <a class="nav-link" href="{{ route('admin.warga.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Warga</span></a>
+            </li>
+            @endcan
             @can('User View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.users.index') }}"><i class="fas fa-users"></i>
-                        <span>User</span></a>
-                </li>
-            @endcan
-            @can('Role View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="fas fa-folder"></i>
-                        <span>Role</span></a>
-                </li>
-            @endcan
-            @can('Permission View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.permissions.index') }}"><i class="fas fa-folder"></i>
-                        <span>Hak Akses</span></a>
-                </li>
-            @endcan
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.users.index') }}">
+                                <i class="fas fa-users"></i>
+                                <span>User</span></a>
+                        </li>
+                    @endcan
+                    @can('Role View')
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="fas fa-folder"></i>
+                                <span>Role</span></a>
+                        </li>
+                    @endcan
+                    @can('Permission View')
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.permissions.index') }}"><i class="fas fa-folder"></i>
+                                <span>Hak Akses</span></a>
+                        </li>
+                    @endcan
             @can('Setting View')
                 <li>
                     <a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i>
                         <span>Pengaturan Web</span></a>
                 </li>
             @endcan
+
+
         </ul>
 
     </aside>
