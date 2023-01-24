@@ -8,7 +8,8 @@
         </div>
         <ul class="sidebar-menu">
             @can('Dashboard')
-                <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-fire"></i>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">
+                    <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
                 </li>
             @endcan
@@ -16,12 +17,12 @@
             <li class="menu-header">BANTUAN SOSIAL</li>
             <li>
                 <a class="nav-link" href="{{ route('admin.bantuan-sosial.index') }}">
-                    <i class="fas fa-folder"></i>
+                    <i class="fas fa-hands-helping"></i>
                     <span>Bantuan Sosial</span></a>
             </li>
             <li class="menu-header">MASTER</li>
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Master Data</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-database"></i><span>Master Data</span></a>
                 <ul class="dropdown-menu">
                     @can('Rw View')
                         <li>
@@ -56,31 +57,54 @@
                 </ul>
             </li>
             @can('Warga View')
-            <li>
-                <a class="nav-link" href="{{ route('admin.warga.index') }}">
-                    <i class="fas fa-users"></i>
-                    <span>Warga</span></a>
-            </li>
+                <li>
+                    <a class="nav-link" href="{{ route('admin.warga.index') }}">
+                        <i class="fas fa-users"></i>
+                        <span>Data Warga</span></a>
+                </li>
+            @endcan
+            @can('Kartu Keluarga View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.kartu-keluarga.index') }}">
+                        <i class="fas fa-users"></i>
+                        <span>Kartu Keluarga</span></a>
+                </li>
+            @endcan
+            @can('Kematian View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.warga-kematian.index') }}">
+                        <i class="fas fa-user-alt-slash"></i>
+                        <span>Data Kematian</span></a>
+                </li>
+            @endcan
+            @can('Pindahan View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.warga-pindahan.index') }}">
+                        <i class="fas fa-house-user"></i>
+                        <span>Data Pindahan</span></a>
+                </li>
             @endcan
             @can('User View')
-                        <li>
-                            <a class="nav-link" href="{{ route('admin.users.index') }}">
-                                <i class="fas fa-users"></i>
-                                <span>User</span></a>
-                        </li>
-                    @endcan
-                    @can('Role View')
-                        <li>
-                            <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="fas fa-folder"></i>
-                                <span>Role</span></a>
-                        </li>
-                    @endcan
-                    @can('Permission View')
-                        <li>
-                            <a class="nav-link" href="{{ route('admin.permissions.index') }}"><i class="fas fa-folder"></i>
-                                <span>Hak Akses</span></a>
-                        </li>
-                    @endcan
+                <li>
+                    <a class="nav-link" href="{{ route('admin.users.index') }}">
+                        <i class="fas fa-users"></i>
+                        <span>Data User</span></a>
+                </li>
+            @endcan
+            @can('Role View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.roles.index') }}">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Role</span></a>
+                </li>
+            @endcan
+            @can('Permission View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.permissions.index') }}">
+                        <i class="fas fa-universal-access"></i>
+                        <span>Hak Akses</span></a>
+                </li>
+            @endcan
             @can('Setting View')
                 <li>
                     <a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i>

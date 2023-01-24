@@ -10,4 +10,8 @@ class Rw extends Model
     use HasFactory;
     protected $table = 'rw';
     protected $guarded = ['id'];
+    public function rt()
+    {
+        return $this->belongsTo(Rt::class);
+    }
 }

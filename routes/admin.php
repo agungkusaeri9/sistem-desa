@@ -13,7 +13,11 @@ use App\Http\Controllers\Admin\RwController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BantuanSosialController;
+use App\Http\Controllers\Admin\KartuKeluargaController;
 use App\Http\Controllers\Admin\WargaController;
+use App\Http\Controllers\Admin\WargaKematianController;
+use App\Http\Controllers\Admin\WargaPindahanController;
+use App\Models\WargaKematian;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[DashboardController::class,'index'])->name('dashboard');
@@ -71,11 +75,28 @@ Route::resource('pekerjaan',PekerjaanController::class)->except('create','show',
 Route::get('bantuan-sosial/data',[BantuanSosialController::class,'data'])->name('bantuan-sosial.data');
 Route::resource('bantuan-sosial',BantuanSosialController::class)->except('create','show','edit','update');
 
+
+
 // warga
 Route::get('warga/data',[WargaController::class,'data'])->name('warga.data');
+Route::post('warga/get',[WargaController::class,'get'])->name('warga.get');
 Route::post('warga/detail',[WargaController::class,'show'])->name('warga.getById');
 Route::resource('warga',WargaController::class)->except('create','show','edit','update');
 
+// kartu keluarga
+Route::get('kartu-keluarga/data',[KartuKeluargaController::class,'data'])->name('kartu-keluarga.data');
+Route::post('kartu-keluarga/detail',[KartuKeluargaController::class,'show'])->name('kartu-keluarga.getById');
+Route::resource('kartu-keluarga',KartuKeluargaController::class)->except('create','show','edit','update');
+
+// warga kematian
+Route::get('warga-kematian/data',[WargaKematianController::class,'data'])->name('warga-kematian.data');
+Route::resource('warga-kematian',WargaKematianController::class)->except('create','show','edit','update');
+
+
+// warga pindahan
+Route::get('warga-pindahan/data',[WargaPindahanController::class,'data'])->name('warga-pindahan.data');
+Route::post('warga-pindahan/detail',[WargaPindahanController::class,'show'])->name('warga-pindahan.getById');
+Route::resource('warga-pindahan',WargaPindahanController::class)->except('create','show','edit','update');
 
 // setting
 Route::get('setting',[SettingController::class,'index'])->name('settings.index');

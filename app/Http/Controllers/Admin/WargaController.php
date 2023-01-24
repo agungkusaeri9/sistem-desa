@@ -148,4 +148,13 @@ class WargaController extends Controller
             }
         }
     }
+
+    public function get()
+    {
+        if(request()->ajax())
+        {
+            $warga = Warga::orderBy('nama','ASC')->get();
+            return response()->json($warga);
+        }
+    }
 }
