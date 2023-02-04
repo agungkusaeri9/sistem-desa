@@ -143,6 +143,56 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="kode_pos">Kode Pos</label>
+                                    <input type="text" class="form-control @error('kode_pos') is-invalid @enderror"
+                                        value="{{ $setting->kode_pos }}" name="kode_pos">
+                                    @error('kode_pos')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="desa">Desa</label>
+                                    <input type="text" class="form-control @error('desa') is-invalid @enderror"
+                                        value="{{ $setting->desa }}" name="desa">
+                                    @error('desa')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="kecamatan">Kecamatan</label>
+                                    <input type="text" class="form-control @error('kecamatan') is-invalid @enderror"
+                                        value="{{ $setting->kecamatan }}" name="kecamatan">
+                                    @error('kecamatan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="kabupaten">Kabupaten</label>
+                                    <input type="text" class="form-control @error('kabupaten') is-invalid @enderror"
+                                        value="{{ $setting->kabupaten }}" name="kabupaten">
+                                    @error('kabupaten')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="provinsi">Provinsi</label>
+                                    <input type="text" class="form-control @error('provinsi') is-invalid @enderror"
+                                        value="{{ $setting->provinsi }}" name="provinsi">
+                                    @error('provinsi')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="favicon">Favicon</label>
                                     <input type="file" class="form-control @error('favicon') is-invalid @enderror"
                                         value="{{ $setting->favicon }}" name="favicon">

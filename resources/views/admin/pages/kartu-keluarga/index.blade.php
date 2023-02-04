@@ -49,10 +49,9 @@
                     </button>
                 </div>
                 <form action="javascript:void(0)" method="post" id="myForm">
-                    <div class="modal-body row">
+                    <div class="modal-body">
                         @csrf
                         <input type="number" id="id" name="id" hidden>
-                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="no_kartu_keluarga">No Kartu Keluarga</label>
                                 <input type="number" class="form-control" name="no_kartu_keluarga" id="no_kartu_keluarga">
@@ -78,40 +77,6 @@
                                 </select>
                                 <div class="invalid-feedback"></div>
                             </div>
-                            <div class="form-group">
-                                <label for="nama_kepala_keluarga">Nama Kepala Keluarga</label>
-                                <input type="text" class="form-control" name="nama_kepala_keluarga"
-                                    id="nama_kepala_keluarga">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="kode_pos">Kode Pos</label>
-                                <input type="number" class="form-control" name="kode_pos" id="kode_pos">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="desa">Desa</label>
-                                <input type="text" class="form-control" name="desa" id="desa">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="kecamatan">Kecamatan</label>
-                                <input type="text" class="form-control" name="kecamatan" id="kecamatan">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="kabupaten">Kabupaten</label>
-                                <input type="text" class="form-control" name="kabupaten" id="kabupaten">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="provinsi">Provinsi</label>
-                                <input type="text" class="form-control" name="provinsi" id="provinsi">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -122,132 +87,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="javascript:void(0)" method="post">
-                    <div class="modal-body">
-                        @csrf
-                        <div class="row">
-                            <input type="number" id="id" name="id" hidden>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="no_kartu_keluarga">No Kartu Keluarga</label>
-                                    <input type="number" class="form-control" name="no_kartu_keluarga"
-                                        id="no_kartu_keluarga">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="alamat">Alamat</label>
-                                    <textarea name="alamat" id="alamat" class="form-control" cols="3" rows="10"></textarea>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="rw">RW</label>
-                                    <input type="text" class="form-control" name="rw" id="rw">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="rt">RT</label>
-                                    <input type="text" class="form-control" name="rt" id="rt">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nama_kepala_keluarga">Nama Kepala Keluarga</label>
-                                    <input type="text" class="form-control" name="nama_kepala_keluarga"
-                                        id="nama_kepala_keluarga">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="kode_pos">Kode Pos</label>
-                                    <input type="number" class="form-control" name="kode_pos" id="kode_pos">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="desa">Desa</label>
-                                    <input type="text" class="form-control" name="desa" id="desa">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="kecamatan">Kecamatan</label>
-                                    <input type="text" class="form-control" name="kecamatan" id="kecamatan">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="kabupaten">Kabupaten</label>
-                                    <input type="text" class="form-control" name="kabupaten" id="kabupaten">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="provinsi">Provinsi</label>
-                                    <input type="text" class="form-control" name="provinsi" id="provinsi">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="d-flex justify-content-between">
-                                    <h6>Anggota Keluarga</h6>
-                                    <button class="btn btn-primary btnAddAnggotaKeluarga mb-2">
-                                        Tambah</button>
-                                </div>
-                                <ul class="list-group list-anggota">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>-</span>
-                                        <span class="closeDelete" data-id="" data-name="">&times;</span>
-                                    </li>
-                                </ul>
-
-                                <div class="d-flex justify-content-end mt-5">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalAddAnggotaKeluarga" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Anggota Keluarga</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="javascript:void(0)" id="formModalAddPermssion" method="post">
-                    <div class="modal-body">
-                        @csrf
-                        <div class="form-group">
-                            <label for="warga_id">Anggota Keluarga</span></label>
-                            <select name="warga_id" id="warga_id" class="form-control">
-                                <option value="" selected disabled>Pilih Anggota Keluarga</option>
-                            </select>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @push('styles')
@@ -343,6 +182,10 @@
                     });
                 })
                 $('#myModal .modal-title').text('Tambah Data');
+                $('#myModal').modal({
+                    backdrop: 'static',
+                    keyboard: true
+                });
                 $('#myModal').modal('show');
             })
             $('#myModal #myForm').on('submit', function(e) {
@@ -354,6 +197,8 @@
                     dataType: 'JSON',
                     data: form.serialize(),
                     success: function(response) {
+                       if(response.status === 'succcess')
+                       {
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
@@ -361,6 +206,15 @@
                             showConfirmButton: true,
                             timer: 1500
                         })
+                       }else{
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            text: response.message,
+                            showConfirmButton: true,
+                            timer: 1500
+                        })
+                       }
                         otable.ajax.reload();
                         $('#myModal').modal('hide');
                     },
@@ -401,7 +255,7 @@
                             `<option selected value="${rw.id}">${rw.nomor}</option>`);
                     } else {
                         $('#myModal #rw_id').append(
-                        `<option value="${rw.id}">${rw.nomor}</option>`);
+                            `<option value="${rw.id}">${rw.nomor}</option>`);
                     }
                 });
 
@@ -416,7 +270,7 @@
                             `<option selected value="${rt.id}">${rt.nomor}</option>`);
                     } else {
                         $('#myModal #rt_id').append(
-                        `<option value="${rt.id}">${rt.nomor}</option>`);
+                            `<option value="${rt.id}">${rt.nomor}</option>`);
                     }
                 });
 
@@ -431,7 +285,7 @@
                         if (rt.id == kartu_keluarga.rt_id) {
                             $('#myModal #rt_id').append(
                                 `<option selected value="${rt.id}">${rt.nomor}</option>`
-                                );
+                            );
                         } else {
                             $('#myModal #rt_id').append(
                                 `<option value="${rt.id}">${rt.nomor}</option>`);
@@ -485,36 +339,6 @@
                 })
             })
 
-            $('.btnAddAnggotaKeluarga').on('click', function() {
-                console.log('ok');
-                $('#modalAddAnggotaKeluarga').modal('show');
-            })
-
-            $('body').on('click', '.btnDetail', function() {
-                let id = $(this).data('id');
-                let kartu_keluarga = getKartuKeluarga(id);
-                $('#modalDetail #id').val(id);
-                $('#modalDetail #no_kartu_keluarga').val(kartu_keluarga.no_kartu_keluarga);
-                $('#modalDetail #alamat').val(kartu_keluarga.alamat);
-                $('#modalDetail #nama_kepala_keluarga').val(kartu_keluarga.nama_kepala_keluarga);
-                $('#modalDetail #kode_pos').val(kartu_keluarga.kode_pos);
-                $('#modalDetail #desa').val(kartu_keluarga.desa);
-                $('#modalDetail #kecamatan').val(kartu_keluarga.kecamatan);
-                $('#modalDetail #kabupaten').val(kartu_keluarga.kabupaten);
-                $('#modalDetail #provinsi').val(kartu_keluarga.provinsi);
-                $('#modalDetail #rw').val(kartu_keluarga.rw.nomor);
-                $('#modalDetail #rt').val(kartu_keluarga.rt.nomor);
-                $('#modalDetail .modal-title').text('Detail Data');
-                $("#modalDetail input").attr("disabled", true);
-                $("#modalDetail textarea").attr("disabled", true);
-                $('#modalDetail').modal({
-                    backdrop: 'static',
-                    keyboard: true
-                });
-                $('#modalDetail').modal('show');
-            })
-
-
             let getRw = function() {
                 let da;
                 $.ajax({
@@ -528,6 +352,7 @@
                 })
                 return da;
             }
+
 
             let getRt = function(rw_id) {
                 let da;
@@ -562,6 +387,40 @@
                 })
                 return da;
             }
+            let getWarga = function(rt_id) {
+                let da;
+                $.ajax({
+                    url: '{{ route('admin.warga.get-by') }}',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        rt_id: rt_id,
+                        where: 'rt_id'
+                    },
+                    async: false,
+                    success: function(response) {
+                        da = response;
+                    }
+                })
+                return da;
+            }
+
+            let getWargaById = function(warga_id) {
+                let da;
+                $.ajax({
+                    url: '{{ route('admin.warga.getById') }}',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    async: false,
+                    data: {
+                        warga_id: warga_id
+                    },
+                    success: function(response) {
+                        da = response;
+                    }
+                })
+                return da;
+            }
 
             $('#myModal').on('hidden.bs.modal', function() {
                 let form = $('#myModal #myForm');
@@ -574,6 +433,16 @@
             $('#modalDetail').on('hidden.bs.modal', function() {
                 $('#modalAddAnggotaKeluarga').modal('hide');
             })
+
+            $('#modalAddAnggotaKeluarga').on('hidden.bs.modal', function() {
+                $('#modalAddAnggotaKeluarga .warga-detail').html('');
+                let form = $('#modalAddAnggotaKeluarga #fromAddAnggotaKeluarga');
+                form.trigger('reset');
+                $('#warga_id').val('');
+                $('#modalAddAnggotaKeluarga').modal('hide');
+            })
+
+
         })
     </script>
 @endpush

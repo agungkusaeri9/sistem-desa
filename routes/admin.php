@@ -80,13 +80,22 @@ Route::resource('bantuan-sosial',BantuanSosialController::class)->except('create
 // warga
 Route::get('warga/data',[WargaController::class,'data'])->name('warga.data');
 Route::post('warga/get',[WargaController::class,'get'])->name('warga.get');
+Route::post('warga/getby',[WargaController::class,'get_by'])->name('warga.get-by');
 Route::post('warga/detail',[WargaController::class,'show'])->name('warga.getById');
 Route::resource('warga',WargaController::class)->except('create','show','edit','update');
 
 // kartu keluarga
 Route::get('kartu-keluarga/data',[KartuKeluargaController::class,'data'])->name('kartu-keluarga.data');
-Route::post('kartu-keluarga/detail',[KartuKeluargaController::class,'show'])->name('kartu-keluarga.getById');
-Route::resource('kartu-keluarga',KartuKeluargaController::class)->except('create','show','edit','update');
+
+// anggota keluarga
+Route::get('kartu-keluarga/tambah_anggota/{no_kk}',[KartuKeluargaController::class,'tambah_anggota'])->name('kartu-keluarga.tambah-anggota');
+Route::post('kartu-keluarga/tambah_anggota/{no_kk}',[KartuKeluargaController::class,'proses_tambah_anggota'])->name('kartu-keluarga.proses-tambah-anggota');
+Route::post('kartu-keluarga/set-kepala-keluarga/{no_kk}',[KartuKeluargaController::class,'set_kepala_keluarga'])->name('kartu-keluarga.set-kepala-keluarga');
+
+Route::post('kartu-keluarga/get_anggota',[KartuKeluargaController::class,'get_anggota'])->name('kartu-keluarga.get-anggota');
+Route::post('kartu-keluarga/hapus_anggota',[KartuKeluargaController::class,'hapus_anggota'])->name('kartu-keluarga.hapus-anggota');
+Route::post('kartu-keluarga/detail',[KartuKeluargaController::class,'detail'])->name('kartu-keluarga.getById');
+Route::resource('kartu-keluarga',KartuKeluargaController::class)->except('create','edit','update');
 
 // warga kematian
 Route::get('warga-kematian/data',[WargaKematianController::class,'data'])->name('warga-kematian.data');

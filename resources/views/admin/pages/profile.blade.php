@@ -19,7 +19,7 @@
               <div class="profile-widget-items">
                 <div class="profile-widget-item">
                   <div class="profile-widget-item-label">Posts</div>
-                  <div class="profile-widget-item-value">{{ auth()->user()->posts()->count() }}</div>
+                  <div class="profile-widget-item-value">0</div>
                 </div>
                 <div class="profile-widget-item">
                   <div class="profile-widget-item-label">Followers</div>
@@ -32,8 +32,7 @@
               </div>
             </div>
             <div class="profile-widget-description pb-5">
-              <div class="profile-widget-name">{{ Str::ucfirst(auth()->user()->name) }} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> Role</div></div>
-              Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.
+              <div class="profile-widget-name">{{ Str::ucfirst(auth()->user()->name) }} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> {{ auth()->user()->getRoleNames()->first() }}</div></div>
             </div>
           </div>
         </div>

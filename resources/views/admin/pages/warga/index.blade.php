@@ -21,6 +21,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>NIK</th>
+                                            <th>KK</th>
                                             <th>Nama</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Tempat Lahir</th>
@@ -39,7 +40,7 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -127,12 +128,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="golongan_darah">Golongan Darah</label>
-                                <input type="text" class="form-control" name="golongan_darah" id="golongan_darah">
+                                <select name="golongan_darah" id="golongan_darah" class="form-control">
+                                    <option value="" selected disabled>Pilih Golongan Darah</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="form-group">
                                 <label for="status_hubungan">Status Hubungan</label>
-                                <input type="text" class="form-control" name="status_hubungan" id="status_hubungan">
+                                <select name="status_hubungan" id="status_hubungan" class="form-control">
+                                    <option value="" selected disabled>Pilih Status Hubungan</option>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="form-group">
@@ -153,7 +159,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="kewarganegaraan">Kewarganegaraan</label>
-                                <input type="text" class="form-control" name="kewarganegaraan" id="kewarganegaraan">
+                                <select name="kewarganegaraan" id="kewarganegaraan" class="form-control">
+                                    <option value="" selected disabled>Pilih Kewarganegaraan</option>
+                                    <option value="WNI">WNI</option>
+                                    <option value="WNA">WNA</option>
+                                </select>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="form-group">
@@ -233,6 +243,10 @@
                         name: 'nik'
                     },
                     {
+                        data: 'no_kartu_keluarga',
+                        name: 'no_kartu_keluarga'
+                    },
+                    {
                         data: 'nama',
                         name: 'nama'
                     },
@@ -309,7 +323,28 @@
                     });
                 })
 
+                 // get status hubungan
+                 let status_hubungan = ['Anak','Suami','Istri','Anak','Menantu','Cucu','Orang Tua','Mertua','Famili Lain','Pembantu'];
+                $('#myModal #status_hubungan').empty();
+                $('#myModal #status_hubungan').append(`<option selected disabled>Pilih Status Hubungan</option>`);
+                status_hubungan.forEach(sb => {
+                    $('#myModal #status_hubungan').append(
+                        `<option value="${sb}">${sb}</option>`);
+                });
 
+                 // get golongan Darah
+                 let golongan_darah = ['A','B','AB','O'];
+                $('#myModal #golongan_darah').empty();
+                $('#myModal #golongan_darah').append(`<option selected disabled>Pilih Golongan Darah</option>`);
+                golongan_darah.forEach(gd => {
+                    $('#myModal #golongan_darah').append(
+                        `<option value="${gd}">${gd}</option>`);
+                });
+
+                $('#myModal').modal({
+                    backdrop: 'static',
+                    keyboard: true
+                });
                 $('#myModal').modal('show');
             })
             $('#myModal #myForm').on('submit', function(e) {
@@ -376,11 +411,22 @@
                 $('#myModal #jenis_kelamin').empty();
                 $('#myModal #jenis_kelamin').append(`<option disabled>Pilih Pekerjaan</option>`);
                 if (warga.jenis_kelamin === 'L'){
-                    $('#myModal #jenis_kelamin').append(`<option value="L">Laki-laki</option>`);
+                    $('#myModal #jenis_kelamin').append(`<option selected value="L">Laki-laki</option>`);
                     $('#myModal #jenis_kelamin').append(`<option value="P">Perempuan</option>`);
                 }else{
                     $('#myModal #jenis_kelamin').append(`<option value="L">Laki-laki</option>`);
-                    $('#myModal #jenis_kelamin').append(`<option value="P">Perempuan</option>`);
+                    $('#myModal #jenis_kelamin').append(`<option selected value="P">Perempuan</option>`);
+                }
+
+                // kewarganegaraan
+                $('#myModal #kewarganegaraan').empty();
+                $('#myModal #kewarganegaraan').append(`<option disabled>Pilih Kewarganegaraan</option>`);
+                if (warga.kewarganegaraan === 'WNI'){
+                    $('#myModal #kewarganegaraan').append(`<option selected value="WNI">WNI</option>`);
+                    $('#myModal #kewarganegaraan').append(`<option value="WNA">WNA</option>`);
+                }else{
+                    $('#myModal #kewarganegaraan').append(`<option value="WNI">WNI</option>`);
+                    $('#myModal #kewarganegaraan').append(`<option  selected value="WNA">WNA</option>`);
                 }
 
                  // get agama
@@ -428,6 +474,19 @@
                    }
                 });
 
+                let status_hubungan = ['Anak','Suami','Istri','Anak','Menantu','Cucu','Orang Tua','Mertua','Famili Lain','Pembantu'];
+                $('#myModal #status_hubungan').empty();
+                $('#myModal #status_hubungan').append(`<option selected disabled>Pilih Status Hubungan</option>`);
+                status_hubungan.forEach(shb => {
+                   if(shb == warga.status_hubungan)
+                   {
+                    $('#myModal #status_hubungan').append(
+                        `<option selected value="${shb}">${shb}</option>`);
+                   }else{
+                    $('#myModal #status_hubungan').append(
+                        `<option value="${shb}">${shb}</option>`);
+                   }
+                });
                 // get rw
                 let rws = getRw();
                 $('#myModal #rw_id').empty();
@@ -476,7 +535,7 @@
                  // status perkawinan
                  let status_perkawinans = ['Belum Kawin','Kawin','Cerai Hidup','Cerai Mati'];
                  $('#myModal #status_perkawinan').empty();
-                $('#myModal #status_perkawinan').append(`<option disabled>Pilih Pekerjaan</option>`);
+                $('#myModal #status_perkawinan').append(`<option disabled>Pilih Status Perkawinan</option>`);
                 status_perkawinans.forEach(status_perkawinan => {
                    if(status_perkawinan === warga.status_perkawinan)
                    {
@@ -486,8 +545,24 @@
                    }
                 });
 
+                 // status golongan darah
+                 let golongan_darah = ['A','B','AB','O'];
+                 $('#myModal #golongan_darah').empty();
+                $('#myModal #golongan_darah').append(`<option disabled>Pilih Golongan Darah</option>`);
+                golongan_darah.forEach(golongan_darah => {
+                   if(golongan_darah === warga.golongan_darah)
+                   {
+                    $('#myModal #golongan_darah').append(`<option selected value="${golongan_darah}">${golongan_darah}</option>`);
+                   }else{
+                    $('#myModal #golongan_darah').append(`<option value="${golongan_darah}">${golongan_darah}</option>`);
+                   }
+                });
 
 
+                $('#myModal').modal({
+                    backdrop: 'static',
+                    keyboard: true
+                });
                 $('#myModal .modal-title').text('Edit Data');
                 $('#myModal').modal('show');
             })
@@ -626,6 +701,45 @@
                     $('#myModal #status_perkawinan').append(`<option value="${status_perkawinan}">${status_perkawinan}</option>`);
                    }
                 });
+
+                 // status golongan darah
+                 let golongan_darah = ['A','B','AB','O'];
+                 $('#myModal #golongan_darah').empty();
+                $('#myModal #golongan_darah').append(`<option disabled>Pilih Golongan Darah</option>`);
+                golongan_darah.forEach(golongan_darah => {
+                   if(golongan_darah === warga.golongan_darah)
+                   {
+                    $('#myModal #golongan_darah').append(`<option selected value="${golongan_darah}">${golongan_darah}</option>`);
+                   }else{
+                    $('#myModal #golongan_darah').append(`<option value="${golongan_darah}">${golongan_darah}</option>`);
+                   }
+                });
+
+                let status_hubungan = ['Anak','Suami','Istri','Anak','Menantu','Cucu','Orang Tua','Mertua','Famili Lain','Pembantu'];
+                $('#myModal #status_hubungan').empty();
+                $('#myModal #status_hubungan').append(`<option selected disabled>Pilih Status Hubungan</option>`);
+                status_hubungan.forEach(shb => {
+                   if(shb == warga.status_hubungan)
+                   {
+                    $('#myModal #status_hubungan').append(
+                        `<option selected value="${shb}">${shb}</option>`);
+                   }else{
+                    $('#myModal #status_hubungan').append(
+                        `<option value="${shb}">${shb}</option>`);
+                   }
+                });
+
+                 // kewarganegaraan
+                 $('#myModal #kewarganegaraan').empty();
+                $('#myModal #kewarganegaraan').append(`<option disabled>Pilih Kewarganegaraan</option>`);
+                if (warga.kewarganegaraan === 'WNI'){
+                    $('#myModal #kewarganegaraan').append(`<option selected value="WNI">WNI</option>`);
+                    $('#myModal #kewarganegaraan').append(`<option value="WNA">WNA</option>`);
+                }else{
+                    $('#myModal #kewarganegaraan').append(`<option value="WNI">WNI</option>`);
+                    $('#myModal #kewarganegaraan').append(`<option  selected value="WNA">WNA</option>`);
+                }
+
                 $("#myModal input").attr("disabled", true);
                 $("#myModal textarea").attr("disabled", true);
                 $('#myModal .modal-title').text('Detail Data');

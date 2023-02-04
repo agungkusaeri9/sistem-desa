@@ -7,6 +7,7 @@ use App\Models\Warga;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\DataTables;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class WargaController extends Controller
 {
@@ -19,9 +20,10 @@ class WargaController extends Controller
 
     public function data()
     {
+
         if (request()->ajax()) {
-            $data = Warga::query();
-            return DataTables::of($data)
+            $data = Warga::with(['kartu_keluarga.kartu_keluarga']);
+            return FacadesDataTables::eloquent($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($model) {
                     $action = "<button class='btn btn-sm btn-warning btnDetail mx-1' data-id='$model->id' data-nama='$model->nama'><i class='fas fa fa-eye'></i> Detail</button><button class='btn btn-sm btn-info btnEdit mx-1' data-id='$model->id' data-nama='$model->nama'><i class='fas fa fa-edit'></i> Edit</button><button class='btn btn-sm btn-danger btnDelete mx-1' data-id='$model->id' data-nama='$model->nama'><i class='fas fa fa-trash'></i> Hapus</button>";
@@ -54,7 +56,10 @@ class WargaController extends Controller
                 ->editColumn('jenis_kelamin', function ($model) {
                     return $model->jenis_kelamin();
                 })
-                ->rawColumns(['action'])
+                ->addColumn('no_kartu_keluarga', function($model){
+                    return $model->kartu_keluarga->kartu_keluarga->no_kartu_keluarga ?? '-';
+                })
+                ->rawColumns(['action','no_kartu_keluarga'])
                 ->make(true);
         }
     }
@@ -154,6 +159,17 @@ class WargaController extends Controller
         if(request()->ajax())
         {
             $warga = Warga::orderBy('nama','ASC')->get();
+            return response()->json($warga);
+        }
+    }
+
+    public function get_by()
+    {
+        if(request()->ajax())
+        {
+            $where = request('where');
+            $rt_id = request('rt_id');
+            $warga = Warga::where($where,$rt_id)->orderBy('nama','ASC')->get();
             return response()->json($warga);
         }
     }

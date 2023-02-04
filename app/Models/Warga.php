@@ -32,6 +32,7 @@ class Warga extends Model
         return $this->belongsTo(Rw::class);
     }
 
+
     public function pendidikan()
     {
         return $this->belongsTo(Pendidikan::class);
@@ -45,4 +46,8 @@ class Warga extends Model
         return $this->belongsTo(Agama::class);
     }
 
+    public function kartu_keluarga()
+    {
+        return $this->hasOne(KartuKeluargaWarga::class,'warga_id','id');
+    }
 }
