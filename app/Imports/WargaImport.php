@@ -24,8 +24,8 @@ class WargaImport implements ToCollection
         foreach ($rows as $key => $row) {
             if ($key > 0) {
                 $nik = $row[1];
-                $jk = Str::substr($nik, 7, 2);
-                if ($jk <= 40) {
+                $jk = Str::substr($nik, 6, 2);
+                if ($jk < 40) {
                     $jenis_kelamin = 'L';
                 } else {
                     $jenis_kelamin = 'P';
