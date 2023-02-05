@@ -16,7 +16,7 @@
                             <a href="javascript:void(0)" class="btn btn-sm btn-primary mb-3 btnAdd"><i
                                     class="fas fa-plus"></i> Tambah Data</a>
                             <div class="table-responsives">
-                                <table class="table table-striped table-hover" id="dTable">
+                                <table class="table nowrap table-striped table-hover" id="dTable">
                                     <thead>
                                         <tr>
                                             <th>No.</th>

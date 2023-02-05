@@ -50,4 +50,14 @@ class Warga extends Model
     {
         return $this->hasOne(KartuKeluargaWarga::class,'warga_id','id');
     }
+
+    public function tanggal_lahir()
+    {
+        if($this->tanggal_lahir)
+        {
+            return $this->tanggal_lahir->translatedFormat('m-d-Y');
+        }else{
+            return '-';
+        }
+    }
 }

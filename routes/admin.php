@@ -80,6 +80,7 @@ Route::resource('bantuan-sosial',BantuanSosialController::class)->except('create
 // warga
 Route::get('warga/data',[WargaController::class,'data'])->name('warga.data');
 Route::post('warga/get',[WargaController::class,'get'])->name('warga.get');
+Route::post('warga/import',[WargaController::class,'import'])->name('warga.import');
 Route::post('warga/getby',[WargaController::class,'get_by'])->name('warga.get-by');
 Route::post('warga/detail',[WargaController::class,'show'])->name('warga.getById');
 Route::resource('warga',WargaController::class)->except('create','show','edit','update');

@@ -37,9 +37,9 @@ class KartuKeluargaController extends Controller
                 ->addColumn('rt_rw', function ($model) {
                     return $model->rt->nomor . '/' . $model->rw->nomor;
                 })
-                ->editColumn('', function ($model) {
-                    return $model->nama_kepala_keluarga ?? '-';
-                })
+                // ->editColumn('nama_kepala_keluarga', function ($model) {
+                //     return $model->nama_kepala_keluarga ?? '-';
+                // })
                 ->rawColumns(['action'])
                 ->make(true);
         }
@@ -132,18 +132,18 @@ class KartuKeluargaController extends Controller
         $kk = KartuKeluarga::where('no_kartu_keluarga', $no_kk)->firstOrFail();
         $warga_id = request('warga_id');
         $cek = KartuKeluargaWarga::where('warga_id', $warga_id);
-        if ($cek->where('kartu_keluarga_id',$kk->id)->first()) {
-          return redirect()->back()->with('error','Anggota Keluarga sudah berada di dalam Kartu Keluarga.');
-        } else if($cek->first()) {
-            return redirect()->back()->with('error','Anggota Keluarga sudah berada di dalam Kartu Keluarga lain.');
-        }else{
+        if ($cek->first()) {
+            return redirect()->back()->with('error', 'Anggota Keluarga sudah berada di dalam Kartu Keluarga lain.');
+        } else if ($cek->where('kartu_keluarga_id', $kk->id)->first()) {
+            return redirect()->back()->with('error', 'Anggota Keluarga sudah berada di dalam Kartu Keluarga.');
+        } else {
             $kkw = KartuKeluargaWarga::create([
                 'warga_id' => $warga_id,
                 'kartu_keluarga_id' => $kk->id,
                 'status' => 'Anggota'
             ]);
 
-            return redirect()->route('admin.kartu-keluarga.show',$kk->id)->with('success','Anggota Keluarga berhasil ditambahkan ke dalam Kartu keluarga.');
+            return redirect()->route('admin.kartu-keluarga.show', $kk->id)->with('success', 'Anggota Keluarga berhasil ditambahkan ke dalam Kartu keluarga.');
         }
     }
 
@@ -188,6 +188,6 @@ class KartuKeluargaController extends Controller
         $kk->update([
             'nama_kepala_keluarga' => $nama_kepala_keluarga
         ]);
-        return redirect()->route('admin.kartu-keluarga.show',$kk->id)->with('success','Kepala Keluarga berhasil di set.');
+        return redirect()->route('admin.kartu-keluarga.show', $kk->id)->with('success', 'Kepala Keluarga berhasil di set.');
     }
 }

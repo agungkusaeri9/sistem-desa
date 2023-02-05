@@ -90,7 +90,7 @@
                             <a href="{{ route('admin.kartu-keluarga.tambah-anggota',$item->no_kartu_keluarga) }}" class="btn btn-primary">Tambah Anggota</a>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped">
+                            <table class="table nowrap table-striped" id="dTable">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
@@ -108,7 +108,7 @@
                                         <td>{{ $anggota->nik }}</td>
                                         <td>{{ $anggota->nama }}</td>
                                         <td>{{ $anggota->jenis_kelamin() }}</td>
-                                        <td>{{ $anggota->tanggal_lahir->translatedFormat('d-m-Y') }}</td>
+                                        <td>{{ $anggota->tanggal_lahir() }}</td>
                                         <td style="min-width: 270px">
                                             <form class="d-inline" action="{{ route('admin.kartu-keluarga.set-kepala-keluarga',$item->no_kartu_keluarga) }}" method="post">
                                                 @csrf
@@ -139,10 +139,22 @@
     </section>
 @endsection
 @push('styles')
+<link rel="stylesheet" href="{{ asset('assets/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.all.min.js') }}">
     <link rel="stylesheet" href="{{ asset('assets/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 @endpush
 @push('scripts')
+<script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
     @include('admin.layouts.partials.sweetalert')
+    <script>
+        $(function(){
+            $('#dTable').DataTable({
+                responsive:true
+            })
+        })
+    </script>
 @endpush

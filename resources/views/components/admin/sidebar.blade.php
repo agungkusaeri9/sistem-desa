@@ -13,13 +13,34 @@
                         <span>Dashboard</span></a>
                 </li>
             @endcan
-
-            <li class="menu-header">BANTUAN SOSIAL</li>
-            <li>
-                <a class="nav-link" href="{{ route('admin.bantuan-sosial.index') }}">
-                    <i class="fas fa-hands-helping"></i>
-                    <span>Bantuan Sosial</span></a>
-            </li>
+            @can('Warga View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.warga.index') }}">
+                        <i class="fas fa-users"></i>
+                        <span>Data Warga</span></a>
+                </li>
+            @endcan
+            @can('Kartu Keluarga View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.kartu-keluarga.index') }}">
+                        <i class="fas fa-users"></i>
+                        <span>Kartu Keluarga</span></a>
+                </li>
+            @endcan
+            @can('Kematian View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.warga-kematian.index') }}">
+                        <i class="fas fa-user-alt-slash"></i>
+                        <span>Data Kematian</span></a>
+                </li>
+            @endcan
+            @can('Pindahan View')
+                <li>
+                    <a class="nav-link" href="{{ route('admin.warga-pindahan.index') }}">
+                        <i class="fas fa-house-user"></i>
+                        <span>Data Pindahan</span></a>
+                </li>
+            @endcan
             <li class="menu-header">MASTER</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-database"></i><span>Master Data</span></a>
@@ -54,36 +75,14 @@
                                 <span>Pekerjaan</span></a>
                         </li>
                     @endcan
+                    @can('Bantuan Sosial View')
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.bantuan-sosial.index') }}">
+                            <span>Bantuan Sosial</span></a>
+                    </li>
+                @endcan
                 </ul>
             </li>
-            @can('Warga View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.warga.index') }}">
-                        <i class="fas fa-users"></i>
-                        <span>Data Warga</span></a>
-                </li>
-            @endcan
-            @can('Kartu Keluarga View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.kartu-keluarga.index') }}">
-                        <i class="fas fa-users"></i>
-                        <span>Kartu Keluarga</span></a>
-                </li>
-            @endcan
-            @can('Kematian View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.warga-kematian.index') }}">
-                        <i class="fas fa-user-alt-slash"></i>
-                        <span>Data Kematian</span></a>
-                </li>
-            @endcan
-            @can('Pindahan View')
-                <li>
-                    <a class="nav-link" href="{{ route('admin.warga-pindahan.index') }}">
-                        <i class="fas fa-house-user"></i>
-                        <span>Data Pindahan</span></a>
-                </li>
-            @endcan
             @can('User View')
                 <li>
                     <a class="nav-link" href="{{ route('admin.users.index') }}">

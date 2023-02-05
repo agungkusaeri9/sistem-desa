@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\WargaImport;
 use App\Models\Warga;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Yajra\DataTables\DataTables;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class WargaController extends Controller
@@ -28,6 +30,7 @@ class WargaController extends Controller
                 ->addColumn('action', function ($model) {
                     $action = "<button class='btn btn-sm btn-warning btnDetail mx-1' data-id='$model->id' data-nama='$model->nama'><i class='fas fa fa-eye'></i> Detail</button><button class='btn btn-sm btn-info btnEdit mx-1' data-id='$model->id' data-nama='$model->nama'><i class='fas fa fa-edit'></i> Edit</button><button class='btn btn-sm btn-danger btnDelete mx-1' data-id='$model->id' data-nama='$model->nama'><i class='fas fa fa-trash'></i> Hapus</button>";
                     return $action;
+
                 })
                 ->editColumn('tempat_lahir', function ($model) {
                    if($model->tempat_lahir)
@@ -173,4 +176,13 @@ class WargaController extends Controller
             return response()->json($warga);
         }
     }
+
+    public function import()
+    {
+        ini_set('memory_limit', '-1');
+        Excel::import(new WargaImport, request()->file('file')->store('temp'));
+        return redirect()->route('admin.warga.index')->with('success','Data Warga berhasil di import.');
+    }
+
+
 }

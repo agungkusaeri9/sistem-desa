@@ -11,5 +11,10 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    <style>
+        #dTable{
+            width: 100%;
+        }
+    </style>
     @stack('styles')
     @vite('resources/js/app.js')

@@ -15,22 +15,18 @@
                         <div class="card-body">
                             <a href="javascript:void(0)" class="btn btn-sm btn-primary mb-3 btnAdd"><i
                                     class="fas fa-plus"></i> Tambah Data</a>
-                            <div class="table-responsives">
-                                <table class="table table-striped table-hover" id="dTable">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>No. Kartu Keluarga</th>
-                                            <th>Nama Kepala Keluarga</th>
-                                            <th>Alamat</th>
-                                            <th>RT/RW</th>
-                                            <th>Kode Pos</th>
-                                            <th>Desa</th>
-                                            <th style="min-width: 240px">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
+                            <table class="table nowrap table-striped table-hover" id="dTable">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>No. Kartu Keluarga</th>
+                                        <th>Nama Kepala Keluarga</th>
+                                        <th>Alamat</th>
+                                        <th>RT/RW</th>
+                                        <th style="min-width: 240px">Aksi</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -52,31 +48,31 @@
                     <div class="modal-body">
                         @csrf
                         <input type="number" id="id" name="id" hidden>
-                            <div class="form-group">
-                                <label for="no_kartu_keluarga">No Kartu Keluarga</label>
-                                <input type="number" class="form-control" name="no_kartu_keluarga" id="no_kartu_keluarga">
-                                <div class="invalid-feedback"></div>
-                            </div>
+                        <div class="form-group">
+                            <label for="no_kartu_keluarga">No Kartu Keluarga</label>
+                            <input type="number" class="form-control" name="no_kartu_keluarga" id="no_kartu_keluarga">
+                            <div class="invalid-feedback"></div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="alamat">Alamat</label>
-                                <textarea name="alamat" id="alamat" class="form-control" cols="3" rows="10"></textarea>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="rw_id">RW</label>
-                                <select name="rw_id" id="rw_id" class="form-control">
-                                    <option value="" selected disabled>Pilih RW</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="rt_id">RT</label>
-                                <select name="rt_id" id="rt_id" class="form-control">
-                                    <option value="" selected disabled>Pilih RT</option>
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <textarea name="alamat" id="alamat" class="form-control" cols="3" rows="10"></textarea>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rw_id">RW</label>
+                            <select name="rw_id" id="rw_id" class="form-control">
+                                <option value="" selected disabled>Pilih RW</option>
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rt_id">RT</label>
+                            <select name="rt_id" id="rt_id" class="form-control">
+                                <option value="" selected disabled>Pilih RT</option>
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -86,7 +82,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @push('styles')
@@ -106,8 +101,10 @@
 @push('scripts')
     <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/plugin/select2/js/select2.min.js') }}"></script>
+    @include('admin.layouts.partials.sweetalert')
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -144,14 +141,6 @@
                     {
                         data: 'rt_rw',
                         name: 'rt_rw',
-                    },
-                    {
-                        data: 'kode_pos',
-                        name: 'kode_pos',
-                    },
-                    {
-                        data: 'desa',
-                        name: 'desa',
                     },
                     {
                         data: 'action',
@@ -197,24 +186,23 @@
                     dataType: 'JSON',
                     data: form.serialize(),
                     success: function(response) {
-                       if(response.status === 'succcess')
-                       {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            text: response.message,
-                            showConfirmButton: true,
-                            timer: 1500
-                        })
-                       }else{
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            text: response.message,
-                            showConfirmButton: true,
-                            timer: 1500
-                        })
-                       }
+                        if (response.status === 'succcess') {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                text: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            })
+                        } else {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                text: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            })
+                        }
                         otable.ajax.reload();
                         $('#myModal').modal('hide');
                     },

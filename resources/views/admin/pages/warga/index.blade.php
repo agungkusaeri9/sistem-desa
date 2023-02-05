@@ -13,10 +13,18 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalImport"><i class="fas fa-upload"></i> Import Excel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
                             <a href="javascript:void(0)" class="btn btn-sm btn-primary mb-3 btnAdd"><i
                                     class="fas fa-plus"></i> Tambah Data</a>
-                            <div class="table-responsives">
-                                <table class="table table-striped table-hover" id="dTable">
+                            <table class="table nowrap table-striped table-hover" id="dTable">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
@@ -31,7 +39,6 @@
                                         </tr>
                                     </thead>
                                 </table>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -195,6 +202,42 @@
                 </form>
             </div>
         </div>
+</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalImport"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Import Data Warga</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('admin.warga.import') }}" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="alert alert-info text-dark">
+                            <strong>Perhatian!</strong>
+                            <p>Format excel harus menyesuaikan seperti di link berikut.</p>
+                        </div>
+                        @csrf
+                        <div class='form-group mb-3'>
+                        <label for='file' class='mb-2'>File</label>
+                        <input type='file' name='file' class='form-control @error('file') is-invalid @enderror' value='{{ old('file') }}'>
+                        @error('file')
+                        <div class='invalid-feedback'>
+                        {{ $message }}
+                        </div>
+                        @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -213,11 +256,12 @@
     </style>
 @endpush
 @push('scripts')
-    <script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/plugin/select2/js/select2.min.js') }}"></script>
+    @include('admin.layouts.partials.sweetalert')
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -229,6 +273,7 @@
         $(function() {
             window.roleId = "";
             let otable = $('#dTable').DataTable({
+                responsive:true,
                 processing: true,
                 serverSide: true,
                 ajax: '{{ route('admin.warga.data') }}',
@@ -324,7 +369,7 @@
                 })
 
                  // get status hubungan
-                 let status_hubungan = ['Anak','Suami','Istri','Anak','Menantu','Cucu','Orang Tua','Mertua','Famili Lain','Pembantu'];
+                 let status_hubungan = ['ANAK','SUAMI','ISTRI','KEPALA KELUARGA','MENANTU','CUCU','ORANG TUA','MERTUA','FAMILI LAIN','PEMBANTU'];
                 $('#myModal #status_hubungan').empty();
                 $('#myModal #status_hubungan').append(`<option selected disabled>Pilih Status Hubungan</option>`);
                 status_hubungan.forEach(sb => {
@@ -474,7 +519,7 @@
                    }
                 });
 
-                let status_hubungan = ['Anak','Suami','Istri','Anak','Menantu','Cucu','Orang Tua','Mertua','Famili Lain','Pembantu'];
+                let status_hubungan = ['ANAK','SUAMI','ISTRI','KEPALA KELUARGA','MENANTU','CUCU','ORANG TUA','MERTUA','FAMILI LAIN','PEMBANTU'];
                 $('#myModal #status_hubungan').empty();
                 $('#myModal #status_hubungan').append(`<option selected disabled>Pilih Status Hubungan</option>`);
                 status_hubungan.forEach(shb => {
@@ -715,7 +760,7 @@
                    }
                 });
 
-                let status_hubungan = ['Anak','Suami','Istri','Anak','Menantu','Cucu','Orang Tua','Mertua','Famili Lain','Pembantu'];
+                let status_hubungan = ['ANAK','SUAMI','ISTRI','KEPALA KELUARGA','MENANTU','CUCU','ORANG TUA','MERTUA','FAMILI LAIN','PEMBANTU'];
                 $('#myModal #status_hubungan').empty();
                 $('#myModal #status_hubungan').append(`<option selected disabled>Pilih Status Hubungan</option>`);
                 status_hubungan.forEach(shb => {
