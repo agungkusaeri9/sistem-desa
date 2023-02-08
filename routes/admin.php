@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BantuanSosialController;
 use App\Http\Controllers\Admin\KartuKeluargaController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\WargaController;
 use App\Http\Controllers\Admin\WargaKematianController;
 use App\Http\Controllers\Admin\WargaPindahanController;
@@ -112,3 +113,7 @@ Route::resource('warga-pindahan',WargaPindahanController::class)->except('create
 Route::get('setting',[SettingController::class,'index'])->name('settings.index');
 
 Route::post('setting',[SettingController::class,'update'])->name('settings.update');
+
+// laporan
+Route::get('laporan/data-warga',[LaporanController::class,'warga'])->name('laporan.warga.index');
+Route::post('laporan/data-warga',[LaporanController::class,'export_warga'])->name('laporan.warga.export');

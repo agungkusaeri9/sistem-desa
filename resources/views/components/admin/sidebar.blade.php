@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             @can('Dashboard')
                 <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">
-                    <i class="fas fa-tachometer-alt"></i>
+                        <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
                 </li>
             @endcan
@@ -41,9 +41,35 @@
                         <span>Data Pindahan</span></a>
                 </li>
             @endcan
+            @can('Laporan View')
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-database"></i><span>Laporan</span></a>
+                    <ul class="dropdown-menu">
+                        @can('Laporan Warga View')
+                            <li>
+                                <a class="nav-link" href="{{ route('admin.laporan.warga.index') }}">
+                                    <span>Data Warga</span></a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{ route('admin.rw.index') }}">
+                                    <span>Data Pindahan</span></a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{ route('admin.rw.index') }}">
+                                    <span>Data Kematian</span></a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{ route('admin.rw.index') }}">
+                                    <span>Data Bantuan Sosial</span></a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
             <li class="menu-header">MASTER</li>
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-database"></i><span>Master Data</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-database"></i><span>Master
+                        Data</span></a>
                 <ul class="dropdown-menu">
                     @can('Rw View')
                         <li>
@@ -76,11 +102,11 @@
                         </li>
                     @endcan
                     @can('Bantuan Sosial View')
-                    <li>
-                        <a class="nav-link" href="{{ route('admin.bantuan-sosial.index') }}">
-                            <span>Bantuan Sosial</span></a>
-                    </li>
-                @endcan
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.bantuan-sosial.index') }}">
+                                <span>Bantuan Sosial</span></a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
             @can('User View')

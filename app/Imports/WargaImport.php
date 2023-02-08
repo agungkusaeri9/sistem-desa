@@ -141,16 +141,6 @@ class WargaImport implements ToCollection
                             'nomor' => $m_rw,
                         ]);
                     }
-                }else{
-                    $cek_rw_lainnya = Rw::where('nomor', 100)->first();
-                    if ($cek_rw_lainnya == NULL) {
-                        $rw = Rw::create([
-                            'rw_id' => 100,
-                            'nomor' => 100
-                        ]);
-                    } else {
-                        $rw = $cek_rw_lainnya;
-                    }
                 }
 
 
@@ -166,17 +156,6 @@ class WargaImport implements ToCollection
                             'rw_id' => $rw->id,
                             'nomor' => $m_rt,
                         ]);
-                    }
-                }else{
-                    $cek_rt_lainnya = Rt::where('nomor', 100)->first();
-
-                    if ($cek_rt_lainnya == NULL) {
-                        // $rt = Rt::firstOrCreate([
-                        //     'rw_id' => 100,
-                        //     'nomor' => 100
-                        // ]);
-                    } else {
-                        $rt = $cek_rt_lainnya;
                     }
                 }
 

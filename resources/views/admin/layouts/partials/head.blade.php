@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fontawesome-free/css/all.min.css') }}">
 
     <!-- CSS Libraries -->
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
@@ -17,4 +17,5 @@
         }
     </style>
     @stack('styles')
+
     @vite('resources/js/app.js')

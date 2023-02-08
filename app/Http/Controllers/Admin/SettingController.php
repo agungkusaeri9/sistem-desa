@@ -40,7 +40,10 @@ class SettingController extends Controller
 
         if(request()->file('image'))
         {
+           if($setting->image)
+           {
             Storage::disk('public')->delete($setting->image);
+           }
             $data['image'] = request()->file('image')->store('settings','public');
         }else{
             $data['image'] = $setting->image;
