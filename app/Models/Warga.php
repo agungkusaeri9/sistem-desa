@@ -14,10 +14,9 @@ class Warga extends Model
 
     public function jenis_kelamin()
     {
-        if($this->jenis_kelamin === 'L')
-        {
+        if ($this->jenis_kelamin === 'L') {
             return 'Laki-laki';
-        }else{
+        } else {
             return 'Perempuan';
         }
     }
@@ -48,16 +47,20 @@ class Warga extends Model
 
     public function kartu_keluarga()
     {
-        return $this->hasOne(KartuKeluargaWarga::class,'warga_id','id');
+        return $this->hasOne(KartuKeluargaWarga::class, 'warga_id', 'id');
     }
 
     public function tanggal_lahir()
     {
-        if($this->tanggal_lahir)
-        {
+        if ($this->tanggal_lahir) {
             return $this->tanggal_lahir->translatedFormat('m-d-Y');
-        }else{
+        } else {
             return '-';
         }
+    }
+
+    public function kematian()
+    {
+        return $this->hasMany(WargaKematian::class);
     }
 }
